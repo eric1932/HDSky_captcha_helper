@@ -24,9 +24,10 @@ def hdsky_captcha(image_hash: str):
     if not re.match(r"[a-z0-9]{32}", image_hash):
         return {"status": 1, "message": "invalid hash"}
     full_url = f"https://hdsky.me/image.php?action=regimage&imagehash={image_hash}"
-    result = ""
+    result_code = ""
     for i in range(hdsky.MAX_RETRY):
-        result = hdsky.recognize(full_url)
-        if re.match(r"[A-Z0-9]{3}", result):
+        result_code = hdsky.recognize(full_url)
+        if re.match(r"[A-Z0-9]{6}", result_code):
             break
-    return {"status": 0, "code": result}
+    print(f"Result: {image_hash}/{result_code}")
+    return {"status": 0, "code": result_code}
