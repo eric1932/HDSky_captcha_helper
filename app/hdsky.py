@@ -5,9 +5,8 @@ import numpy as np
 import requests
 from aip import AipOcr
 
-APP_ID = ''
-API_KEY = ''
-SECRET_KEY = ''
+from cred_loader import APP_ID, API_KEY, SECRET_KEY
+
 MAX_RETRY = 5
 
 ocr_client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
@@ -41,9 +40,13 @@ def recognize(captcha_url: str):
     image = cv2.imdecode(image, cv2.IMREAD_COLOR)
     png_cv_bytes = _convert(image)
 
-    # result = ocr_client.basicAccurate(png_cv_bytes)['words_result'][0]['words']
-    result = ocr_client.basicGeneral(png_cv_bytes)['words_result'][0]['words']
-    result = re.sub(r'[\W_]+', '', result)  # 只保留字母和数字
-    result = result.upper()  # 只有大写字母
+    result_json = ocr_client.basicGeneral(png_cv_bytes)
+    if 'error_code' in result_json:
+        # failed
+        result_code = ''
+    else:
+        result_code = result_json['words_result'][0]['words']
+        result_code = re.sub(r'[\W_]+', '', result_code)  # 只保留字母和数字
+        result_code = result_code.upper()  # 只有大写字母
 
-    return result
+    return result_code

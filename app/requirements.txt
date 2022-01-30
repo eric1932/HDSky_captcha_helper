@@ -1,4 +1,5 @@
 baidu-aip
+python-dotenv
 fastapi
 numpy
 opencv-python
