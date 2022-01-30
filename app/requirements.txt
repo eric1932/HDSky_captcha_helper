@@ -1,0 +1,5 @@
+baidu-aip
+fastapi
+numpy
+opencv-python
+uvicorn
