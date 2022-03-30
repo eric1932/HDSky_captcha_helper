@@ -16,12 +16,12 @@ Then, use `build.sh` and `run.sh` to deploy Docker image.
 
 ### Docker CLI
 You may shadow .env file into `sysenv`
-```
+```shell
 docker run -d \
   --name=HDSky_captcha_helper \
-  -e APP_ID='app_id' \
-  -e API_KEY='api_key' \
-  -e SECRET_KEY='api_secret' \
+  -e APP_ID=<YOUR_APP_ID> \
+  -e API_KEY=<YOUR_API_KEY> \
+  -e SECRET_KEY=<YOUR_API_SECRET> \
   -p 80:80 \
   --restart unless-stopped \
   hdsky-captcha:latest
