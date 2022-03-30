@@ -14,6 +14,19 @@ SECRET_KEY=''
 
 Then, use `build.sh` and `run.sh` to deploy Docker image.
 
+### Docker CLI
+You may shadow .env file into `sysenv`
+```
+docker run -d \
+  --name=HDSky_captcha_helper \
+  -e APP_ID='app_id' \
+  -e API_KEY='api_key' \
+  -e SECRET_KEY='api_secret' \
+  -p 80:80 \
+  --restart unless-stopped \
+  hdsky-captcha:latest
+```
+
 ## Usage
 GET API path `/hdsky/captcha/{image_hash}` and return will be like
 ```json
