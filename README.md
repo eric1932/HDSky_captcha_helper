@@ -24,4 +24,4 @@ GET API path `/hdsky/captcha/{image_hash}` and return will be like
 ```
 
 ## TODOs
-[ ] Update Dockerfile to take `.env` vars
+✅ Update Dockerfile to take `.env` vars
